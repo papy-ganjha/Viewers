@@ -23,6 +23,11 @@ const dicomvideo = {
   viewport: 'org.ohif.dicom-video.viewportModule.dicom-video',
 }
 
+const dicompdf = {
+  sopClassHandler: 'org.ohif.dicom-pdf.sopClassHandlerModule.dicom-pdf',
+  viewport: 'org.ohif.dicom-pdf.viewportModule.dicom-pdf',
+}
+
 export default function mode({ modeConfiguration }) {
   return {
     // TODO: We're using this as a route segment
@@ -96,6 +101,10 @@ export default function mode({ modeConfiguration }) {
                   namespace: dicomvideo.viewport,
                   displaySetsToDisplay: [dicomvideo.sopClassHandler],
                 },
+                {
+                  namespace: dicompdf.viewport,
+                  displaySetsToDisplay: [dicompdf.sopClassHandler],
+                },
               ],
             },
           };
@@ -108,9 +117,15 @@ export default function mode({ modeConfiguration }) {
       'org.ohif.measurement-tracking',
       'org.ohif.dicom-sr',
       'org.ohif.dicom-video',
+      'org.ohif.dicom-pdf',
     ],
     hangingProtocols: [ohif.hangingProtocols],
-    sopClassHandlers: [dicomvideo.sopClassHandler, ohif.sopClassHandler, dicomsr.sopClassHandler,],
+    sopClassHandlers: [
+      dicomvideo.sopClassHandler,
+      ohif.sopClassHandler,
+      dicomsr.sopClassHandler,
+      dicompdf.sopClassHandler,
+    ],
     hotkeys: [...hotkeys.defaults.hotkeyBindings],
   };
 }

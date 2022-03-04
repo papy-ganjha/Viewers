@@ -174,6 +174,9 @@ function createDicomWebApi(dicomWebConfig, UserAuthenticationService) {
         if (BulkDataURI.indexOf('instances/') === 0) {
           return `${wadoRoot}/studies/${StudyInstanceUID}/series/${SeriesInstanceUID}/${acceptUri}`;
         }
+        if (BulkDataURI.indexOf('bulkdata/') === 0) {
+          return `${wadoRoot}/studies/${StudyInstanceUID}/${acceptUri}`;
+        }
         throw new Error('BulkDataURI in unknown format:' + BulkDataURI);
       },
       series: {
