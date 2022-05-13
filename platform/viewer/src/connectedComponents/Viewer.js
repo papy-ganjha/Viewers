@@ -390,6 +390,7 @@ class Viewer extends Component {
                     const { appConfig } = appContext;
                     const { studyPrefetcher } = appConfig;
                     const { thumbnails } = this.state;
+                    appContext.appConfig.setThumbnailState(thumbnails);
                     return (
                       <ConnectedStudyBrowser
                         studies={thumbnails}
